@@ -12,12 +12,13 @@ player = Player()
 scoreboard = Scoreboard()
 all_cars = []
 game_is_on = True
+car_speed = 0.1
 
 screen.listen()
 screen.onkey(player.go_forward,"Up")
 
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(car_speed)
     screen.update()
     if random.randint(1, 5) == 1:
         car = CarManager()
@@ -25,18 +26,16 @@ while game_is_on:
 
     for car in all_cars:
         car.move()
-
-    for car in all_cars:
         if car.xcor() < -420:
             car.hideturtle()
             all_cars.remove(car)
-    for car in all_cars:
         if player.distance(car) < 20:
             scoreboard.game_over()
             game_is_on = False
 
     if player.ycor() > 300:
         scoreboard.increase_score()
+        car_speed *= 0.9
         player.reset_position()
 
 screen.exitonclick()
