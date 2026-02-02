@@ -9,6 +9,7 @@ screen = Screen()
 screen.setup(width=800, height=600)
 screen.tracer(0)
 player = Player()
+scoreboard = Scoreboard()
 all_cars = []
 game_is_on = True
 
@@ -29,7 +30,14 @@ while game_is_on:
         if car.xcor() < -420:
             car.hideturtle()
             all_cars.remove(car)
+    for car in all_cars:
+        if player.distance(car) < 20:
+            scoreboard.game_over()
+            game_is_on = False
 
     if player.ycor() > 300:
+        scoreboard.increase_score()
         player.reset_position()
+
+screen.exitonclick()
 
