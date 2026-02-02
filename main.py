@@ -30,3 +30,6 @@ while game_is_on:
             car.hideturtle()
             all_cars.remove(car)
 
+    if player.ycor() > 300:
+        player.reset_position()
+

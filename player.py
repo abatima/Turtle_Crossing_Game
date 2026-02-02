@@ -11,9 +11,12 @@ class Player(Turtle):
         self.color("black")
         self.shape("turtle")
         self.setheading(90)
-        self.penup()
-        self.goto(STARTING_POSITION)
+        self.reset_position()
 
     def go_forward(self):
         new_ycor = self.ycor() + 20
         self.teleport(0, new_ycor)
+
+    def reset_position(self):
+        self.penup()
+        self.goto(STARTING_POSITION)
