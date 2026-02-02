@@ -10,33 +10,26 @@ screen.setup(width=800, height=600)
 screen.tracer(0)
 player = Player()
 scoreboard = Scoreboard()
-all_cars = []
+car_manager = CarManager()
 game_is_on = True
-car_speed = 0.1
-
 screen.listen()
 screen.onkey(player.go_forward,"Up")
 
 while game_is_on:
-    time.sleep(car_speed)
+    time.sleep(0.1)
     screen.update()
-    if random.randint(1, 5) == 1:
-        car = CarManager()
-        all_cars.append(car)
+    car_manager.create_car()
+    car_manager.move_cars()
 
-    for car in all_cars:
-        car.move()
-        if car.xcor() < -420:
-            car.hideturtle()
-            all_cars.remove(car)
-        if player.distance(car) < 20:
+    for car in car_manager.all_cars:
+        if car.distance(player) < 20:
             scoreboard.game_over()
             game_is_on = False
 
-    if player.ycor() > 300:
-        scoreboard.increase_score()
-        car_speed *= 0.9
+    if player.is_at_finish_line():
+        scoreboard.increase_level()
         player.reset_position()
+        car_manager.level_up_cars()
 
 screen.exitonclick()
 
