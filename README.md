@@ -1,5 +1,8 @@
 # Turtle Crossing Game 🐢
 
+## <img width="800" height="631" alt="image" src="https://github.com/user-attachments/assets/5c711703-a94a-4fca-baa6-cc0408986b88" />
+
+
 A fast-paced "Frogger-style" arcade game built using **Python** and the **Turtle** graphics library. This project focuses on managing multiple moving objects, collision detection, and level-based difficulty scaling.
 
 ## 🎮 Features
